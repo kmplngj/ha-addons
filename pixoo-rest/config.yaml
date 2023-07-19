@@ -1,6 +1,6 @@
 name: Pixoo Rest
 description: A RESTful API to easily interact with the Wi-Fi enabled Divoom Pixoo devices.
-version: 0.0.1
+version: 0.0.2
 slug: pixoo-rest
 init: false
 arch:
@@ -17,11 +17,12 @@ ports_description:
   5000/tcp: RESTful service port
 webui: http://[HOST]:[PORT:5000]
 options:
+  PIXOO_HOST_AUTO: true
   PIXOO_HOST: null
   PIXOO_DEBUG: false
   PIXOO_SCREEN_SIZE: 64
 schema:
+  PIXOO_HOST_AUTO: bool 
   PIXOO_HOST: str
   PIXOO_DEBUG: bool
   PIXOO_SCREEN_SIZE: list(64|16)
-
