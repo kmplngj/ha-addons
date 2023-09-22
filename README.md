@@ -2,7 +2,7 @@
 
 Addons for http://home-assistant.io
 
-Created by maintained by @kmplngj
+Maintained by @kmplngj
 
 ## How to Install
 
