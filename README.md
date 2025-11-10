@@ -119,6 +119,6 @@ MIT License - see [LICENSE](LICENSE) for details.
 [armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
 [i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
 [license-shield]: https://img.shields.io/github/license/kmplngj/ha-addons.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2024.svg
-[pixoo-version-shield]: https://img.shields.io/badge/version-0.1.0-blue.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2025.svg
+[pixoo-version-shield]: https://img.shields.io/badge/version-2.0.0-blue.svg
 [pixoo-changelog]: pixoo-rest/CHANGELOG.md
