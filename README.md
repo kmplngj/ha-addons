@@ -1,25 +1,124 @@
-# ha-addons
+# Home Assistant Add-ons by kmplngj
 
-Addons for http://home-assistant.io
+[![License][license-shield]](LICENSE)
+![Project Maintenance][maintenance-shield]
 
-Maintained by @kmplngj
+Custom Home Assistant add-ons repository.
 
-## How to Install
+## Installation
 
-1. In Supervisor go to the Add-on Store.
-2. In the overflow menu click "Repositories".
-3. Add `https://github.com/kmplngj/ha-addons/`
-4. Wait for the Add-ons to show up or click reload in the same overflow menu.
-5. Install the Add-on you want.
-6. Follow Documentation, Setup and Install of the Add-on.
+Add this repository to your Home Assistant instance:
 
-## [pixoo-rest](https://github.com/4ch1m/pixoo-rest)
+1. Navigate to **Settings** → **Add-ons** → **Add-on Store**
+2. Click the **⋮** (three dots) menu in the top right
+3. Select **Repositories**
+4. Add this repository URL:
+   ```
+   https://github.com/kmplngj/ha-addons
+   ```
+5. Click **Add**
+6. Refresh the add-on store
+7. Find and install the add-ons you need
 
-This Add-on runs [pixoo-rest](https://github.com/4ch1m/pixoo-rest), a RESTful API to easily interact with the Wi-Fi enabled Divoom Pixoo devices. The service uses the python library from [SomethingWithComputers](https://github.com/SomethingWithComputers/pixoo).
+## Available Add-ons
 
-# Thanks ...
+### 🎨 [Pixoo REST](pixoo-rest)
 
-Thank you to
+[![Version][pixoo-version-shield]][pixoo-changelog]
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
+![Supports i386 Architecture][i386-shield]
 
-- https://github.com/4ch1m
-- https://github.com/SomethingWithComputers
+RESTful API to control Divoom Pixoo LED displays with automatic device discovery and seamless Home Assistant integration.
+
+**Features:**
+- 🔍 Automatic device discovery
+- 🎨 50+ API endpoints for full control
+- 📱 Built-in Swagger UI documentation
+- 🖼️ Image, GIF, and animation support
+- 📝 Text display with multiple fonts
+- ⏱️ Timers and countdowns
+- 🌡️ Sensor data visualization
+
+**Quick Start:**
+```yaml
+PIXOO_HOST_AUTO: true
+PIXOO_SCREEN_SIZE: 64
+```
+
+[📖 Full Documentation](pixoo-rest/DOCS.md) | [🔧 API Reference](AGENTS.md) | [📋 Changelog](pixoo-rest/CHANGELOG.md)
+
+### 🐋 Standalone Docker Deployment
+
+Want to run Pixoo REST outside of Home Assistant? Use Docker Compose:
+
+```bash
+# Clone repository
+git clone https://github.com/kmplngj/ha-addons.git
+cd ha-addons
+
+# Configure
+cp .env.example .env
+# Edit .env with your Pixoo device IP
+
+# Start
+docker compose up -d
+
+# Access at http://localhost:5001
+```
+
+[📖 Docker Compose Guide](DOCKER_COMPOSE.md)
+
+---
+
+## Support
+
+- **Issues:** [GitHub Issues](https://github.com/kmplngj/ha-addons/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/kmplngj/ha-addons/discussions)
+
+## Contributing
+
+---
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## Credits
+
+### Pixoo REST
+
+This add-on wraps the excellent work of:
+
+- **pixoo-rest** by [@4ch1m](https://github.com/4ch1m) - RESTful API server
+- **pixoo library** by [@SomethingWithComputers](https://github.com/SomethingWithComputers) - Python device library
+
+### Home Assistant
+
+Built for the amazing [Home Assistant](https://www.home-assistant.io/) smart home platform.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+**Maintained by [@kmplngj](https://github.com/kmplngj)**
+
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+[i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
+[license-shield]: https://img.shields.io/github/license/kmplngj/ha-addons.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2024.svg
+[pixoo-version-shield]: https://img.shields.io/badge/version-0.1.0-blue.svg
+[pixoo-changelog]: pixoo-rest/CHANGELOG.md
