@@ -1,8 +1,9 @@
-# pixoo-rest v1.6.0 dependencies
-Flask==3.0.3
-pixoo==0.9.2
-Pillow==10.4.0
-requests==2.32.3
-gunicorn==23.0.0
-flasgger==0.9.7.2.dev2
-python-dotenv==1.0.1
+# pixoo-rest v2.0.0 dependencies (FastAPI-based)
+pixoo>=0.9.2
+pillow>=10.4.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+httpx>=0.28.1
+python-multipart>=0.0.20

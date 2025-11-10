@@ -1,0 +1,101 @@
+#include <tunables/global>
+
+profile pixoo-rest flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # Receive signals from S6-Overlay (if ever used in future)
+  signal (receive) peer=*_pixoo-rest,
+
+  # Python interpreter
+  /usr/bin/python3* ix,
+  /usr/bin/uvicorn ix,
+  /usr/lib/python3*/** r,
+
+  # Bash and common tools
+  /bin/bash ix,
+  /bin/sh ix,
+  /bin/dash ix,
+  /bin/busybox ix,
+  /usr/bin/curl rix,
+  /usr/bin/jq rix,
+
+  # Application files
+  /app/** r,
+  /run.sh rix,
+  /entrypoint.sh rix,
+
+  # Data directory (persistent storage)
+  /data/** rw,
+
+  # Temporary files
+  /tmp/** rw,
+  /run/** rw,
+  /var/tmp/** rw,
+
+  # System files (read-only)
+  /etc/hosts r,
+  /etc/resolv.conf r,
+  /etc/nsswitch.conf r,
+  /etc/passwd r,
+  /etc/group r,
+  /etc/ssl/** r,
+  /etc/ca-certificates/** r,
+  /usr/share/ca-certificates/** r,
+
+  # Network access
+  network inet stream,
+  network inet6 stream,
+  network inet dgram,
+  network inet6 dgram,
+
+  # DNS
+  network netlink raw,
+
+  # TTY access
+  /dev/tty rw,
+  /dev/null rw,
+  /dev/zero r,
+  /dev/urandom r,
+  /dev/random r,
+
+  # Proc filesystem
+  @{PROC}/@{pid}/stat r,
+  @{PROC}/@{pid}/status r,
+  @{PROC}/sys/net/core/somaxconn r,
+  owner @{PROC}/@{pid}/fd/ r,
+  owner @{PROC}/@{pid}/mounts r,
+
+  # Uvicorn server process
+  profile uvicorn flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+
+    # Receive signals
+    signal (receive) peer=*_pixoo-rest,
+
+    # Python and Uvicorn
+    /usr/bin/python3* ix,
+    /usr/bin/uvicorn r,
+    /usr/lib/python3*/** r,
+
+    # Application access
+    /app/** r,
+    /data/** rw,
+
+    # Network
+    network inet stream,
+    network inet6 stream,
+
+    # System files
+    /etc/hosts r,
+    /etc/resolv.conf r,
+    /etc/ssl/** r,
+
+    # Temp
+    /tmp/** rw,
+    /dev/tty rw,
+  }
+}

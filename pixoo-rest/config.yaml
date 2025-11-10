@@ -1,5 +1,5 @@
 name: Pixoo REST
-version: "0.1.0"
+version: "0.2.0"
 slug: pixoo-rest
 description: RESTful API for Divoom Pixoo LED displays with automatic discovery and Home Assistant integration
 url: https://github.com/kmplngj/ha-addons/tree/main/pixoo-rest
@@ -12,22 +12,27 @@ arch:
 init: false
 startup: services
 boot: auto
+stage: stable
+homeassistant: "2024.1.0"
 watchdog: tcp://[HOST]:5000
 ports:
   5000/tcp: 5000
 ports_description:
-  5000/tcp: "RESTful API and Swagger UI endpoint"
+  5000/tcp: "RESTful API and Swagger UI endpoint (accessible externally)"
 webui: "http://[HOST]:[PORT:5000]"
+ingress: true
+ingress_port: 5000
 panel_icon: mdi:led-strip-variant
 panel_title: Pixoo REST API
 homeassistant_api: false
 hassio_api: false
 host_network: false
+apparmor: true
 
 # Configuration options
 options:
   PIXOO_HOST_AUTO: true
-  PIXOO_HOST: null
+  PIXOO_HOST: ""
   PIXOO_DEBUG: false
   PIXOO_SCREEN_SIZE: 64
   PIXOO_CONNECTION_RETRIES: 10

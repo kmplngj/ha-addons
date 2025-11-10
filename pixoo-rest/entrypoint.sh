@@ -38,7 +38,7 @@ export PIXOO_DEBUG="${PIXOO_DEBUG:-false}"
 export PIXOO_CONNECTION_RETRIES="${PIXOO_CONNECTION_RETRIES:-10}"
 
 # Verify app directory exists
-if [ ! -f "/app/app.py" ]; then
+if [ ! -d "/app/pixoo_rest" ]; then
     echo "ERROR: pixoo-rest application files not found in /app"
     echo "Container may not have been built correctly"
     exit 1
@@ -49,24 +49,22 @@ cd /app || {
     exit 1
 }
 
-echo "Pixoo REST v1.6.0 ready"
+echo "Pixoo REST v2.0.0 ready (FastAPI)"
 echo ""
 
-# Start Gunicorn server
+# Start Uvicorn server (FastAPI)
 echo "Starting Pixoo REST server on port 5000..."
 echo ""
 
-GUNICORN_OPTS="--bind 0.0.0.0:5000"
-GUNICORN_OPTS="${GUNICORN_OPTS} --workers 1"
-GUNICORN_OPTS="${GUNICORN_OPTS} --timeout 120"
-GUNICORN_OPTS="${GUNICORN_OPTS} --access-logfile -"
-GUNICORN_OPTS="${GUNICORN_OPTS} --error-logfile -"
+UVICORN_OPTS="--host 0.0.0.0"
+UVICORN_OPTS="${UVICORN_OPTS} --port 5000"
+UVICORN_OPTS="${UVICORN_OPTS} --workers 1"
 
 if [ "${PIXOO_REST_DEBUG}" = "true" ]; then
-    GUNICORN_OPTS="${GUNICORN_OPTS} --log-level debug"
+    UVICORN_OPTS="${UVICORN_OPTS} --log-level debug"
 else
-    GUNICORN_OPTS="${GUNICORN_OPTS} --log-level info"
+    UVICORN_OPTS="${UVICORN_OPTS} --log-level info"
 fi
 
 # shellcheck disable=SC2086
-exec gunicorn ${GUNICORN_OPTS} app:app
+exec uvicorn pixoo_rest.app:app ${UVICORN_OPTS}

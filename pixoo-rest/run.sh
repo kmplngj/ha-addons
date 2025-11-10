@@ -74,32 +74,25 @@ cd /app || {
     exit 1
 }
 
-# Download pixoo-rest application
-bashio::log.info "Downloading pixoo-rest application..."
-PIXOO_REST_VERSION="1.6.0"
-PIXOO_REST_URL="https://github.com/4ch1m/pixoo-rest/archive/refs/tags/${PIXOO_REST_VERSION}.tar.gz"
+# pixoo-rest v2.0.0 is already included in the Docker image
+bashio::log.info "Using pixoo-rest v2.0.0 (FastAPI)"
 
-if ! curl -sL "${PIXOO_REST_URL}" | tar xz --strip-components=1; then
-    bashio::log.error "Failed to download pixoo-rest ${PIXOO_REST_VERSION}"
-    exit 1
-fi
+# Set additional environment variables for uvicorn
+export PIXOO_REST_HOST="0.0.0.0"
+export PIXOO_REST_PORT="5000"
 
-bashio::log.info "Successfully downloaded pixoo-rest ${PIXOO_REST_VERSION}"
-
-# Start Gunicorn server
+# Start Uvicorn server (FastAPI)
 bashio::log.info "Starting Pixoo REST server on port 5000..."
 
-GUNICORN_OPTS="--bind 0.0.0.0:5000"
-GUNICORN_OPTS="${GUNICORN_OPTS} --workers 1"
-GUNICORN_OPTS="${GUNICORN_OPTS} --timeout 120"
-GUNICORN_OPTS="${GUNICORN_OPTS} --access-logfile -"
-GUNICORN_OPTS="${GUNICORN_OPTS} --error-logfile -"
+UVICORN_OPTS="--host 0.0.0.0"
+UVICORN_OPTS="${UVICORN_OPTS} --port 5000"
+UVICORN_OPTS="${UVICORN_OPTS} --workers 1"
 
 if [ "${PIXOO_REST_DEBUG}" = true ]; then
-    GUNICORN_OPTS="${GUNICORN_OPTS} --log-level debug"
+    UVICORN_OPTS="${UVICORN_OPTS} --log-level debug"
 else
-    GUNICORN_OPTS="${GUNICORN_OPTS} --log-level info"
+    UVICORN_OPTS="${UVICORN_OPTS} --log-level info"
 fi
 
 # shellcheck disable=SC2086
-exec gunicorn ${GUNICORN_OPTS} app:app
+exec uvicorn pixoo_rest.app:app ${UVICORN_OPTS}

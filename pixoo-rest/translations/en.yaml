@@ -1,0 +1,22 @@
+configuration:
+  PIXOO_HOST_AUTO:
+    name: Automatic Device Discovery
+    description: Automatically discover Pixoo device on the local network using Divoom cloud API. If disabled, you must provide a manual IP address.
+  PIXOO_HOST:
+    name: Device IP Address
+    description: Manual IP address of your Pixoo device (e.g., 192.168.1.100). Only used when automatic discovery is disabled.
+  PIXOO_DEBUG:
+    name: Pixoo Debug Logging
+    description: Enable detailed debug logging from the pixoo library for troubleshooting device communication issues.
+  PIXOO_SCREEN_SIZE:
+    name: Screen Size
+    description: The pixel resolution of your Pixoo device. Choose the size that matches your hardware (16x16, 32x32, or 64x64).
+  PIXOO_CONNECTION_RETRIES:
+    name: Connection Retry Attempts
+    description: Number of times to retry connecting to the Pixoo device during startup (1-30). Higher values provide more resilience but longer startup times.
+  PIXOO_REST_DEBUG:
+    name: REST API Debug Logging
+    description: Enable detailed debug logging for the REST API server. Useful for troubleshooting API requests and responses.
+
+network:
+  5000/tcp: RESTful API and Swagger UI endpoint (accessible externally for automations and scripts)

@@ -36,11 +36,11 @@ COPY requirements.txt .
 RUN pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir -r requirements.txt
 
-# Clone pixoo-rest application (no tags available, using master)
+# Clone pixoo-rest application (modernized version)
 RUN apk add --no-cache git && \
-    git clone --depth 1 \
-    https://github.com/4ch1m/pixoo-rest.git /tmp/pixoo-rest && \
-    cp -r /tmp/pixoo-rest/* /app/ && \
+    git clone --depth 1 --branch master \
+    https://github.com/kmplngj/pixoo-rest.git /tmp/pixoo-rest && \
+    cp -r /tmp/pixoo-rest/src/pixoo_rest /app/ && \
     rm -rf /tmp/pixoo-rest && \
     apk del git
 

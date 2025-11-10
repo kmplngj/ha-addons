@@ -5,10 +5,15 @@ build_from:
   armhf: "ghcr.io/home-assistant/armhf-base-python:3.13-alpine3.20"
   armv7: "ghcr.io/home-assistant/armv7-base-python:3.13-alpine3.20"
   i386: "ghcr.io/home-assistant/i386-base-python:3.13-alpine3.20"
+
+codenotary:
+  base_image: notary@home-assistant.io
+  signer: 86871574+kmplngj@users.noreply.github.com
+
 labels:
   org.opencontainers.image.title: "Home Assistant Add-on: Pixoo REST"
   org.opencontainers.image.description: "RESTful API to interact with Divoom Pixoo LED displays with automatic discovery and Home Assistant integration"
   org.opencontainers.image.source: "https://github.com/kmplngj/ha-addons"
-  org.opencontainers.image.version: "0.1.0"
+  org.opencontainers.image.version: "2.0.0"
   org.opencontainers.image.licenses: "MIT"
   org.opencontainers.image.documentation: "https://github.com/kmplngj/ha-addons/blob/main/pixoo-rest/DOCS.md"
