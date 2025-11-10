@@ -14,7 +14,6 @@ All notable changes to this project will be documented in this file.
 - **AppArmor profile** (`apparmor.txt`) - Custom security profile for enhanced protection (+1 security point)
 - **Icon and logo** - Professional Pixoo-themed graphics for add-on store presentation
 - **Translations** - English translations for all configuration options (`translations/en.yaml`)
-- **Codenotary signing** - Container image verification for supply chain security
 - Port 5000 remains available for external API access alongside Ingress
 - Minimum Home Assistant version requirement (2024.1.0)
 - Stage flag set to `stable` for production-ready release
@@ -43,7 +42,6 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 - AppArmor profile restricts add-on capabilities and file system access
-- Codenotary signing ensures container image authenticity
 - Ingress provides authentication through Home Assistant
 - Port 5000 can be used externally when needed for automation tools
 
