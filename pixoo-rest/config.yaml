@@ -1,5 +1,5 @@
 name: Pixoo REST
-version: "0.2.0"
+version: "2.0.0"
 slug: pixoo-rest
 description: RESTful API for Divoom Pixoo LED displays with automatic discovery and Home Assistant integration
 url: https://github.com/kmplngj/ha-addons/tree/main/pixoo-rest
